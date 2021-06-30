@@ -22,6 +22,9 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # You can add custom software and dependencies for your environment below
 # -----------
 
+RUN sudo curl -fsSL https://deb.nodesource.com/setup_15.x | sudo bash -
+RUN sudo apt-get install -y nodejs
+
 # Install a VS Code extension:
 # Note: we use a different marketplace than VS Code. See https://github.com/cdr/code-server/blob/main/docs/FAQ.md#differences-compared-to-vs-code
 # RUN code-server --install-extension esbenp.prettier-vscode
@@ -40,6 +43,3 @@ ENV PORT=8080
 # Use our custom entrypoint script first
 COPY deploy-container/entrypoint.sh /usr/bin/deploy-container-entrypoint.sh
 ENTRYPOINT ["/usr/bin/deploy-container-entrypoint.sh"]
-
-RUN sudo curl -fsSL https://deb.nodesource.com/setup_15.x | sudo bash -
-RUN sudo apt-get install -y nodejs
